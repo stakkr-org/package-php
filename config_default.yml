@@ -1,0 +1,13 @@
+---
+
+services:
+  php:
+    enabled: false
+    version: latest
+    ram: 1024M
+  xhgui:
+    enabled: false
+    version: latest
+    ram: 1024M
+    service_name: XHGui (PHP Profiling)
+    service_url: http://{}

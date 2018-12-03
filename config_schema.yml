@@ -1,0 +1,27 @@
+---
+
+"$schema": http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  services:
+    type: object
+    additionalProperties: false
+    properties:
+      php:
+        type: object
+        properties:
+          enabled: { type: boolean }
+          version: { type: [string, number] }
+          ram: { type: string }
+          name: { type: string }
+        required: [enabled, version, ram]
+      xhgui:
+        type: object
+        properties:
+          enabled: { type: boolean }
+          version: { type: [string, number] }
+          ram: { type: string }
+          name: { type: string }
+          service_name: { type: string }
+          service_url: { type: string }
+        required: [enabled, version, ram, service_name, service_url]
