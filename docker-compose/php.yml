@@ -11,6 +11,8 @@ services:
             FPM_UID: ${DOCKER_UID}
             FPM_GID: ${DOCKER_GID}
             ENVIRONMENT: ${DOCKER_ENVIRONMENT}
+            STAKKR_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
+            STAKKR_PROXY_DOMAIN: ${PROXY_DOMAIN}
         volumes:
             - ${COMPOSE_BASE_DIR}/home/www-data:/home/www-data
             - ${COMPOSE_BASE_DIR}/www:/var/www
