@@ -5,9 +5,10 @@ services:
     enabled: false
     version: latest
     ram: 1024M
+    blocked_ports: [25, 465, 587]
   xhgui:
     enabled: false
     version: latest
     ram: 1024M
     service_name: XHGui (PHP Profiling)
-    service_url: http://{}
+    service_url: http://{} (works also in https)

@@ -9,19 +9,20 @@ properties:
     properties:
       php:
         type: object
+        additionalProperties: false
         properties:
           enabled: { type: boolean }
           version: { type: [string, number] }
           ram: { type: string }
-          name: { type: string }
+          blocked_ports: { type: array, items: { type: integer } }
         required: [enabled, version, ram]
       xhgui:
         type: object
+        additionalProperties: false
         properties:
           enabled: { type: boolean }
           version: { type: [string, number] }
           ram: { type: string }
-          name: { type: string }
           service_name: { type: string }
           service_url: { type: string }
         required: [enabled, version, ram, service_name, service_url]
