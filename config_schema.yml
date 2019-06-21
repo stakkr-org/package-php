@@ -15,6 +15,7 @@ properties:
           version: { type: [string, number] }
           ram: { type: string }
           blocked_ports: { type: array, items: { type: integer } }
+          enabled_modules: { type: string }
         required: [enabled, version, ram]
       xhgui:
         type: object

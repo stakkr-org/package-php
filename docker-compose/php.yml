@@ -11,6 +11,7 @@ services:
             FPM_UID: ${DOCKER_UID}
             FPM_GID: ${DOCKER_GID}
             ENVIRONMENT: ${DOCKER_ENVIRONMENT}
+            PHP_ENABLED_MODULES: ${DOCKER_PHP_ENABLED_MODULES}
             STAKKR_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
             STAKKR_PROXY_DOMAIN: ${PROXY_DOMAIN}
         volumes:
