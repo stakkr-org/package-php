@@ -2,27 +2,23 @@ version: '2.2'
 
 services:
     php:
-        image: edyan/php:${DOCKER_PHP_VERSION}
+        cap_add: [NET_ADMIN, NET_RAW]
         container_name: ${COMPOSE_PROJECT_NAME}_php
-        hostname: ${COMPOSE_PROJECT_NAME}_php
-        networks: [stakkr]
-        mem_limit: ${DOCKER_PHP_RAM}
         environment:
-            FPM_UID: ${DOCKER_UID}
-            FPM_GID: ${DOCKER_GID}
-            ENVIRONMENT: ${DOCKER_ENVIRONMENT}
+            FPM_UID: ${DOCKER_UID:-33}
+            FPM_GID: ${DOCKER_GID:-33}
+            ENVIRONMENT: ${DOCKER_ENVIRONMENT:-dev}
             PHP_ENABLED_MODULES: ${DOCKER_PHP_ENABLED_MODULES}
             STAKKR_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
-            STAKKR_PROXY_DOMAIN: ${PROXY_DOMAIN}
+            STAKKR_PROXY_DOMAIN: ${PROXY_DOMAIN:-localhost}
+        hostname: ${COMPOSE_PROJECT_NAME}_php
+        image: edyan/php:${DOCKER_PHP_VERSION:-latest}
+        labels:
+            - traefik.enable=False
+        mem_limit: ${DOCKER_PHP_RAM:-1024M}
+        networks: [stakkr]
         volumes:
             - ${COMPOSE_BASE_DIR}/home/www-data:/home/www-data
             - ${COMPOSE_BASE_DIR}/www:/var/www
             - ${COMPOSE_BASE_DIR}/logs/php:/var/log/php
-            - ${COMPOSE_BASE_DIR}/conf/php-fpm-override:/etc/php5/fpm/user-conf.d
-            - ${COMPOSE_BASE_DIR}/conf/php-fpm-override:/etc/php/7.0/fpm/user-conf.d
-            - ${COMPOSE_BASE_DIR}/conf/php-fpm-override:/etc/php/7.1/fpm/user-conf.d
-            - ${COMPOSE_BASE_DIR}/conf/php-fpm-override:/etc/php/7.2/fpm/user-conf.d
-            - ${COMPOSE_BASE_DIR}/conf/php-fpm-override:/etc/php/7.3/fpm/user-conf.d
-        cap_add: [NET_ADMIN, NET_RAW]
-        labels:
-            - traefik.enable=False
+            - ${COMPOSE_BASE_DIR}/conf/php-fpm-override:/etc/php/current/fpm/user-conf.d
