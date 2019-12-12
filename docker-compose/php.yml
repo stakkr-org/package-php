@@ -19,6 +19,6 @@ services:
         networks: [stakkr]
         volumes:
             - ${COMPOSE_BASE_DIR}/home/www-data:/home/www-data
-            - ${COMPOSE_BASE_DIR}/www:/var/www
+            - ${COMPOSE_BASE_DIR}/www:/var/www:delegated
             - ${COMPOSE_BASE_DIR}/logs/php:/var/log/php
             - ${COMPOSE_BASE_DIR}/conf/php-fpm-override:/etc/php/current/fpm/user-conf.d
