@@ -12,4 +12,4 @@ services:
     version: latest
     ram: 1024M
     service_name: XHGui (PHP Profiling)
-    service_url: http://{} (works also in https)
+    service_url: https://{}
